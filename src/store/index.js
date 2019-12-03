@@ -22,7 +22,9 @@ export default new Vuex.Store({
       getItem: key => Cookies.get(key),
       // Please see https://github.com/js-cookie/js-cookie#json, on how to handle JSON.
       setItem: (key, value) =>
-        Cookies.set(key, value, { expires: 3, secure: true }),
+      // figure out secure
+      // Cookies.set(key, value, { expires: 3, secure: true }),
+        Cookies.set(key, value, { expires: 3 }),
       removeItem: key => Cookies.remove(key)
     }
   })]
