@@ -7,21 +7,20 @@
     >
       <v-spacer></v-spacer>
     </v-app-bar>
-
     <v-content>
-      <Landing/>
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Landing from './components/Landing'
+// import Home from './views/Home'
 
 export default {
   name: 'App',
 
   components: {
-    Landing
+    // Home
   },
 
   data: () => ({
