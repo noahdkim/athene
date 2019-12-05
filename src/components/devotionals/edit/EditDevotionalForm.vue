@@ -122,7 +122,8 @@ export default {
 
   methods: {
     ...mapActions([
-      'saveDevotionalEntryToFirebase',
+      'createDevotionalEntryInFirebase',
+      'updateDevotionalEntryInFirebase',
       'getDevotionalEntry'
     ]),
     saveDevotionalEntry () {
@@ -135,7 +136,7 @@ export default {
         summary: this.summary,
         reflection: this.reflection
       }
-      this.saveDevotionalEntryToFirebase(entry)
+      this.createDevotionalEntryInFirebase(entry)
     }
   }
 }

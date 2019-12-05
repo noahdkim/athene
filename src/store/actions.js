@@ -23,8 +23,18 @@ const actions = {
         })
     })
   },
-  saveDevotionalEntryToFirebase ({ commit }, devotionalEntry) {
+  createDevotionalEntryInFirebase ({ commit }, devotionalEntry) {
     db.collection('devotionals-content').add(devotionalEntry)
+      .then(function () {
+        console.log('Document successfully written!')
+      })
+      .catch(function (error) {
+        console.error('Error writing document: ', error)
+      })
+  },
+  updateDevotionalEntryInFirebase ({ commit }, devotionalEntry) {
+    db.collection('devotionals-content').doc(devotionalEntry.devotionalEntryId)
+      .update(devotionalEntry)
       .then(function () {
         console.log('Document successfully written!')
       })

@@ -22,3 +22,5 @@ yarn-error.log*
 
 # config files
 src/firebase-config.js
+.eslintrc*
+.editorconfig
