@@ -17,6 +17,7 @@
 
 <script>
 import EditDevotionalForm from '@/components/devotionals/edit/EditDevotionalForm.vue'
+// import store from '@/store'
 
 export default {
   name: 'create-devotional',
@@ -25,8 +26,23 @@ export default {
   data: () => ({
 
   }),
+  // beforeRouteEnter (to, from, next) {
+  //   store.dispatch('getDevotionalEntry').then((err, resp) => {
+  //     next(vm => vm.setInitialData(err, resp))
+  //   }
+  //   )
+  // },
+  // beforeRouteUpdate (to, from, next) {
+  //   this.post = null
+
+  //   store.dispatch('getDevotionalEntry').then((err, post) => {
+  //     this.setInitialData(err, post)
+  //     next()
+  //   })
+  // },
 
   methods: {
+
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <v-form v-model="valid">
+  <v-form>
     <v-container>
       <v-row>
         <v-col
@@ -8,6 +8,7 @@
           <v-autocomplete
             label="Book"
             :items="books"
+            v-model="book"
           ></v-autocomplete>
         </v-col>
         <v-col
@@ -48,47 +49,94 @@
       </v-row>
       <v-row>
         <v-textarea
-          label="Summary">
+          label="Summary"
+          v-model="summary">
         </v-textarea>
       </v-row>
       <v-row>
         <v-textarea
-          label="Reflection">
+          label="Reflection"
+          v-model="reflection">
         </v-textarea>
       </v-row>
     </v-container>
-    <v-btn class="mr-4" @click="submit">submit</v-btn>
+    <v-btn class="mr-4" @click="saveDevotionalEntry">submit</v-btn>
     <v-btn to="/devotionals">Go Back</v-btn>
   </v-form>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import { booksList } from '@/components/devotionals/edit/booksAndVerses.js'
 
 export default {
   name: 'edit-devotional-form',
+  props: {
+    initialBook: {
+      type: String,
+      default: ''
+    },
+    initialChapter: {
+      type: Number,
+      default: 0
+    },
+    initialDate: {
+      type: String,
+      default: ''
+    },
+    initialStartVerse: {
+      type: Number,
+      default: 0
+    },
+    initialEndVerse: {
+      type: Number,
+      default: 0
+    },
+    initialSummary: {
+      type: String,
+      default: ''
+    },
+    initialReflection: {
+      type: String,
+      default: ''
+    },
+    contentId: {
+      type: String,
+      default: ''
+    }
+  },
 
-  data: () => ({
-    books: [
-      'Genesis', 'Exodus', 'Leviticus', 'Numbers',
-      'Deutoronomy', 'Joshua', 'Judges', 'Ruth', '1 Samuel',
-      '2 Samuel', '1 Kings', '2 Kings', '1 Chronicles',
-      '2 Chronicles', 'Ezra', 'Nehemiah', 'Esther',
-      'Job', 'Psalms', 'Proverbs', 'Ecclesiastes',
-      'Song of Songs', 'Isaiah', 'Jeremiah', 'Lamentations',
-      'Ezekiel', 'Daniel', 'Hosea', 'Joel', 'Amos', 'Obadiah',
-      'Jonah', 'Micah', 'Nahum', 'Habakkuk', 'Zephaniah',
-      'Haggai', 'Zechariah', 'Malachi',
-      'Matthew', 'Mark', 'Luke', 'John', 'Acts', 'Romans',
-      '1 Corinthians', '2 Corinthians', 'Galatians', 'Ephesians',
-      'Colossians', '1 Thessalonians', '2 Thessalonians',
-      '1 Timothy', '2 Timothy', 'Titus', 'Philemon',
-      'Hebrews', 'James', '1 Peter', '2 Peter', '1 John',
-      '2 John', '3 John', 'Jude', 'Revelations'
-    ],
-    menu: false
-  }),
+  data: function () {
+    return {
+      books: booksList,
+      book: this.initialBook,
+      chapter: this.initialChapter,
+      date: this.initialDate,
+      startVerse: this.initialStartVerse,
+      endVerse: this.initialEndVerse,
+      summary: this.initialSummary,
+      reflection: this.initialReflection,
+      menu: false
+    }
+  },
 
   methods: {
+    ...mapActions([
+      'saveDevotionalEntryToFirebase',
+      'getDevotionalEntry'
+    ]),
+    saveDevotionalEntry () {
+      const entry = {
+        book: this.book,
+        chapter: this.chapter,
+        date: this.date,
+        startVerse: this.startVerse,
+        endVerse: this.endVerse,
+        summary: this.summary,
+        reflection: this.reflection
+      }
+      this.saveDevotionalEntryToFirebase(entry)
+    }
   }
 }
 </script>
