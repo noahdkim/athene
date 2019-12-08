@@ -1,6 +1,9 @@
 const getters = {
   isAuthenticated (state) {
-    return !!state.token
+    return !!state.token && !!state.userUID
+  },
+  devotionalsMetas (state) {
+    return state.devotionalsMetas
   }
 }
 

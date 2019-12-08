@@ -9,8 +9,9 @@ import * as Cookies from 'js-cookie'
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
-    user: null,
-    token: null
+    userUID: null,
+    token: null,
+    devotionalsMetas: []
   },
   mutations: mutations,
   actions: actions,

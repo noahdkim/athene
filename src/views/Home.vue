@@ -45,7 +45,8 @@ export default {
     ]),
     signIn: function () {
       this.googleSignIn().then(() => {
-        this.$router.push('/devotionals')
+        console.log('resolved')
+        this.$router.push('/devotionals/view')
       })
     }
   }

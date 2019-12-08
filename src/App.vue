@@ -1,12 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <v-spacer></v-spacer>
-    </v-app-bar>
+    <athene-toolbar/>
     <v-content>
       <router-view></router-view>
     </v-content>
@@ -14,13 +8,13 @@
 </template>
 
 <script>
-// import Home from './views/Home'
+import AtheneToolbar from '@/components/AtheneToolbar/AtheneToolbar.vue'
 
 export default {
   name: 'App',
 
   components: {
-    // Home
+    AtheneToolbar
   },
 
   data: () => ({
