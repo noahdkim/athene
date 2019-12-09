@@ -29,8 +29,22 @@ const actions = {
       resolve()
     })
   },
-  createDevotionalEntryInFirebase ({ commit }, devotionalEntry) {
-    db.collection('devotionals-content').add(devotionalEntry)
+  createDevotionalEntryInFirebase ({ commit, state }, payload) {
+    const { entry, meta } = payload
+    const userUID = state.userUID
+    const devotionalsContentRef = db.collection('devotionals-content')
+    const devotionalsMetaRef = db.collection('meta')
+      .doc(userUID)
+      .collection('devotionals_meta')
+    const batch = db.batch()
+
+    var newDevotionalsEntryRef = devotionalsContentRef.doc()
+    var newDevotionalsMetaRef = devotionalsMetaRef.doc()
+    meta.contentId = newDevotionalsEntryRef.id
+    meta.lastEdited = firebase.firestore.Timestamp.fromDate(new Date())
+    batch.set(newDevotionalsEntryRef, entry)
+    batch.set(newDevotionalsMetaRef, meta)
+    batch.commit()
       .then(function () {
         console.log('Document successfully written!')
       })
@@ -70,7 +84,6 @@ const actions = {
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
-            console.log(doc.data())
             devotionalsMetas.push(doc.data())
           })
           commit('updateDevotionalsMetas', devotionalsMetas)

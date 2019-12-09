@@ -10,7 +10,7 @@
             align-with-title
             background-color="transparent"
             >
-            <v-tab v-for="tab in tabs" :key="tab.mainTab.name">
+            <v-tab v-for="tab in tabs" :key="tab.mainTab.name" :to="tab.mainTab.route">
               {{tab.mainTab.name}}
             </v-tab>
         </v-tabs>

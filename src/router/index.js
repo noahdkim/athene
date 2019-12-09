@@ -4,6 +4,7 @@ import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
 import DevotionalsViewList from '@/views/devotionals/devotionalsview/DevotionalsViewList.vue'
 import CreateDevotional from '@/views/devotionals/CreateDevotional.vue'
+import ViewDevotionalsContent from '@/views/devotionals/devotionalsview/ViewDevotionalsContent.vue'
 import store from '@/store'
 
 Vue.use(VueRouter)
@@ -39,6 +40,14 @@ const routes = [
     path: '/devotionals/create',
     name: 'create-devotional',
     component: CreateDevotional,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/devotionals/view/:contentId',
+    name: 'view-devotionals-content',
+    component: ViewDevotionalsContent,
     meta: {
       requiresAuth: true
     }

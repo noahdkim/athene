@@ -43,14 +43,11 @@ export default {
 
   beforeRouteEnter (to, from, next) {
     store.dispatch('getUserDevotionalsMetas').then(res => {
-      console.log(store.devotionalsMetas)
-
       next()
     })
   },
   beforeRouteUpdate (to, from, next) {
     store.dispatch('getUserDevotionalsMetas').then(res => {
-      console.log(store.devotionalsMetas)
       next()
     })
   },

@@ -1,7 +1,7 @@
 const devotionals = {
   mainTab: {
     name: 'devotionals',
-    route: 'devotionals'
+    route: '/devotionals/view'
   },
   subTabs: [
     {

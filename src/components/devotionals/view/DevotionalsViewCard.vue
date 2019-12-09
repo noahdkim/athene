@@ -1,5 +1,6 @@
 <template>
     <v-card
+      :to="`/devotionals/view/${contentId}`"
     >
       <v-card-title>{{book}} {{chapter}}:{{startVerse}}-{{endVerse}}</v-card-title>
       <v-card-subtitle>{{dateCreated}}</v-card-subtitle>
@@ -23,7 +24,7 @@ export default {
       default: ''
     },
     dateCreated: {
-      type: String,
+      type: Date,
       default: ''
     },
     startVerse: {
