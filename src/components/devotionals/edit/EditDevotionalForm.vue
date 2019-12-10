@@ -42,7 +42,7 @@
         >
           <template v-slot:activator="{ on }">
             <v-text-field
-              v-model="date"
+              v-model="dateDisplay"
               label="Date"
               :rules="dateRules"
               readonly
@@ -75,13 +75,14 @@
         </v-textarea>
       </v-row>
     </v-container>
-    <v-btn class="mr-4" @click="validate">submit</v-btn>
+    <v-btn class="mr-4" @click="validate">save</v-btn>
     <v-btn to="/devotionals">Go Back</v-btn>
   </v-form>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import moment from 'moment'
 import { booksList } from '@/components/devotionals/edit/books-and-verses.js'
 import {
   bookRules,
@@ -104,7 +105,7 @@ export default {
     },
     initialDate: {
       type: String,
-      default: new Date().toISOString().slice(0, 10)
+      default: moment().format('YYYY-MM-DD')
     },
     initialStartVerse: {
       type: Number,
@@ -149,6 +150,14 @@ export default {
     }
   },
 
+  computed: {
+    dateDisplay: {
+      get () {
+        return moment(this.date).format('MMMM Do YYYY')
+      }
+    }
+  },
+
   methods: {
     ...mapActions([
       'createDevotionalEntryInFirebase',
@@ -176,19 +185,11 @@ export default {
       }
       this.createDevotionalEntryInFirebase({ entry, meta })
     },
-    formatDate (date) {
-      let month = `${date.getMonth() + 1}`
-      let day = `${date.getDate()}`
-      const year = date.getFullYear()
-
-      if (month.length < 2) month = `0${month}`
-      if (day.length < 2) day = `0${day}`
-
-      return [year, month, day].join('-')
-    },
     validate () {
       if (this.$refs.form.validate()) {
-        this.saveDevotionalEntry()
+        this.saveDevotionalEntry().then(
+          this.$router.push('/devotionals/view')
+        )
       }
     },
     parseChapterAndVerses () {

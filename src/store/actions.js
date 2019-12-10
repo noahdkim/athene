@@ -14,7 +14,7 @@ const actions = {
           const token = resp.credential.accessToken
           // The signed-in user info.
           const user = resp.user
-          commit('auth_success', { token, user })
+          commit('authSuccess', { token, user })
           resolve(resp)
         })
         .catch(err => {
@@ -44,13 +44,15 @@ const actions = {
     meta.lastEdited = firebase.firestore.Timestamp.fromDate(new Date())
     batch.set(newDevotionalsEntryRef, entry)
     batch.set(newDevotionalsMetaRef, meta)
-    batch.commit()
-      .then(function () {
-        console.log('Document successfully written!')
-      })
-      .catch(function (error) {
-        console.error('Error writing document: ', error)
-      })
+    return new Promise((resolve, reject) => {
+      batch.commit()
+        .then(function () {
+          resolve()
+        })
+        .catch(function (error) {
+          reject(error)
+        })
+    })
   },
   updateDevotionalEntryInFirebase ({ commit }, devotionalEntry) {
     db.collection('devotionals-content').doc(devotionalEntry.devotionalEntryId)

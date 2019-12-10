@@ -3,11 +3,12 @@
       :to="`/devotionals/view/${contentId}`"
     >
       <v-card-title>{{book}} {{chapter}}:{{startVerse}}-{{endVerse}}</v-card-title>
-      <v-card-subtitle>{{dateCreated}}</v-card-subtitle>
+      <v-card-subtitle>{{dateCreated | moment}}</v-card-subtitle>
   </v-card>
 </template>
 
 <script>
+import moment from 'moment'
 
 export default {
   props: {
@@ -34,6 +35,11 @@ export default {
     endVerse: {
       type: Number,
       default: 0
+    }
+  },
+  filters: {
+    moment: function (date) {
+      return moment(date).format('MMMM Do YYYY')
     }
   }
 }

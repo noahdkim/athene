@@ -10,15 +10,20 @@
       </v-col>
     </v-row>
     <v-row justify="center">
-    <devotionals-view-card v-for="meta in devotionalsMetas"
-      :key="meta.content_id"
-      :book="meta.book"
-      :chapter="meta.chapter"
-      :contentId="meta.contentId"
-      :dateCreated="meta.lastEdited.toDate()"
-      :startVerse="meta.startVerse"
-      :endVerse="meta.endVerse"
-      />
+      <v-col
+        v-for="meta in devotionalsMetas"
+        :key="meta.content_id"
+        cols=8
+      >
+        <devotionals-view-card
+          :book="meta.book"
+          :chapter="meta.chapter"
+          :contentId="meta.contentId"
+          :dateCreated="meta.lastEdited.toDate()"
+          :startVerse="meta.startVerse"
+          :endVerse="meta.endVerse"
+          />
+      </v-col>
     </v-row>
     <v-row justify="center">
       <v-btn

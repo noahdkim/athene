@@ -1,25 +1,41 @@
 <template>
     <v-container>
-        <v-row>
-            <div class="title" style="white-space: pre-line;">
-                {{book}} {{chapter}}:{{startVerse}}-{{endVerse}}
-            </div>
+        <v-row ref="info-row">
+            <v-col cols=7>
+              <div class="title" style="white-space: pre-line;">
+                  {{book}} {{chapter}}:{{startVerse}}-{{endVerse}}
+              </div>
+            </v-col>
+            <v-col class="text-right">
+              {{date | moment}}
+            </v-col>
         </v-row>
-        <v-row>
-            <div class="body-1" style="white-space: pre-line;">
-                {{summary}}
-            </div>
+        <v-row ref="summary-row">
+            <v-col cols=12 class="pb-0">
+              <div class="subtitle-1">Summary</div>
+            </v-col>
+            <v-col cols=12 class="pt-0">
+              <div class="body-1 font-weight-light" style="white-space: pre-line;">
+                  {{summary}}
+              </div>
+            </v-col>
         </v-row>
-        <v-row>
-            <div class="body-1" style="white-space: pre-line;">
-                {{reflection}}
-            </div>
+        <v-row ref="reflection-row">
+            <v-col cols=12 class="pb-0">
+              <div class="subtitle-1">Reflection</div>
+            </v-col>
+            <v-col cols=12 class="pt-0">
+              <div class="body-1 font-weight-light" style="white-space: pre-line;">
+                  {{reflection}}
+              </div>
+            </v-col>
         </v-row>
     </v-container>
 </template>
 
 <script>
 import { db } from '@/main.js'
+import moment from 'moment'
 
 export default {
   name: 'view-devotionals-content',
@@ -67,6 +83,11 @@ export default {
       this.endVerse = endVerse
       this.reflection = reflection
       this.summary = summary
+    }
+  },
+  filters: {
+    moment: function (date) {
+      return moment(date).format('MMMM Do YYYY')
     }
   }
 }
