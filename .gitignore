@@ -24,3 +24,6 @@ yarn-error.log*
 src/firebase-config.js
 .eslintrc*
 .editorconfig
+
+# cloud functions
+cloud-functions

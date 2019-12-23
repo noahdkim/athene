@@ -183,7 +183,7 @@ export default {
         startVerse: startVerse,
         endVerse: endVerse
       }
-      this.createDevotionalEntryInFirebase({ entry, meta })
+      return this.createDevotionalEntryInFirebase({ entry, meta })
     },
     validate () {
       if (this.$refs.form.validate()) {
@@ -194,11 +194,11 @@ export default {
     },
     parseChapterAndVerses () {
       const splitChapterAndVerses = this.chapterAndVerses.split(':')
-      const chapter = splitChapterAndVerses[0]
+      const chapter = parseInt(splitChapterAndVerses[0])
       const verses = splitChapterAndVerses[1]
       const splitVerses = verses.split('-')
-      const startVerse = splitVerses[0]
-      const endVerse = splitVerses[1]
+      const startVerse = parseInt(splitVerses[0])
+      const endVerse = parseInt(splitVerses[1])
       return { chapter, startVerse, endVerse }
     }
 
