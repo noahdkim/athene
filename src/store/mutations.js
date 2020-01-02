@@ -18,6 +18,9 @@ const mutations = {
   },
   updateDevotionalsMetas (state, newDevotionalsMetas) {
     state.devotionalsMetas = newDevotionalsMetas
+  },
+  updateOverallStatistics (state, newOverallStatistics) {
+    state.overallStatistics = newOverallStatistics
   }
 }
 

@@ -4,6 +4,9 @@ const getters = {
   },
   devotionalsMetas (state) {
     return state.devotionalsMetas
+  },
+  overallStatistics (state) {
+    return state.overallStatistics
   }
 }
 

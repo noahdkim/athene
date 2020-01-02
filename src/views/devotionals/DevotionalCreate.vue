@@ -20,7 +20,7 @@ import EditDevotionalForm from '@/components/devotionals/edit/EditDevotionalForm
 // import store from '@/store'
 
 export default {
-  name: 'create-devotional',
+  name: 'devotional-create',
   components: { EditDevotionalForm },
 
   data: () => ({

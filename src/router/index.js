@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
 import DevotionalsViewList from '@/views/devotionals/devotionalsview/DevotionalsViewList.vue'
-import CreateDevotional from '@/views/devotionals/CreateDevotional.vue'
+import DevotionalCreate from '@/views/devotionals/DevotionalCreate.vue'
+import DevotionalsAnalytics from '@/views/devotionals/DevotionalsAnalytics.vue'
 import ViewDevotionalsContent from '@/views/devotionals/devotionalsview/ViewDevotionalsContent.vue'
 import store from '@/store'
 
@@ -38,8 +39,8 @@ const routes = [
   },
   {
     path: '/devotionals/create',
-    name: 'create-devotional',
-    component: CreateDevotional,
+    name: 'devotional-create',
+    component: DevotionalCreate,
     meta: {
       requiresAuth: true
     }
@@ -48,6 +49,14 @@ const routes = [
     path: '/devotionals/view/:contentId',
     name: 'view-devotionals-content',
     component: ViewDevotionalsContent,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/devotionals/analytics',
+    name: 'devotionals-analytics',
+    component: DevotionalsAnalytics,
     meta: {
       requiresAuth: true
     }

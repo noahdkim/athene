@@ -96,6 +96,25 @@ const actions = {
           reject(error)
         })
     })
+  },
+  getOverallStatistics ({ commit, state }) {
+    const userUID = state.userUID
+    return new Promise((resolve, reject) => {
+      db.collection('devotionals-statistics')
+        .doc(userUID)
+        .collection('completion')
+        .doc('overall-completion')
+        .get()
+        .then((doc) => {
+          const overallStatistics = doc.data()
+          commit('updateOverallStatistics', overallStatistics)
+          resolve()
+        })
+        .catch(function (error) {
+          console.error('Error getting documents: ', error)
+          reject(error)
+        })
+    })
   }
 
 }
