@@ -38,7 +38,7 @@ import { db } from '@/main.js'
 import moment from 'moment'
 
 export default {
-  name: 'view-devotionals-content',
+  name: 'devotionals-view-content',
   components: {
   },
   created: function () {

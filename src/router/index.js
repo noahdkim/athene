@@ -2,10 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
-import DevotionalsViewList from '@/views/devotionals/devotionalsview/DevotionalsViewList.vue'
-import DevotionalCreate from '@/views/devotionals/DevotionalCreate.vue'
 import DevotionalsAnalytics from '@/views/devotionals/DevotionalsAnalytics.vue'
-import ViewDevotionalsContent from '@/views/devotionals/devotionalsview/ViewDevotionalsContent.vue'
+import DevotionalCreate from '@/views/devotionals/DevotionalCreate.vue'
+import DevotionalsViewContent from '@/views/devotionals/view/DevotionalsViewContent.vue'
+import DevotionalsViewList from '@/views/devotionals/view/DevotionalsViewList.vue'
+import ReadingViewList from '@/views/reading/view/ReadingViewList.vue'
+import ReadingCreate from '@/views/reading/create/ReadingCreate.vue'
+
 import store from '@/store'
 
 Vue.use(VueRouter)
@@ -47,8 +50,8 @@ const routes = [
   },
   {
     path: '/devotionals/view/:contentId',
-    name: 'view-devotionals-content',
-    component: ViewDevotionalsContent,
+    name: 'devotionals-view-content',
+    component: DevotionalsViewContent,
     meta: {
       requiresAuth: true
     }
@@ -57,6 +60,22 @@ const routes = [
     path: '/devotionals/analytics',
     name: 'devotionals-analytics',
     component: DevotionalsAnalytics,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/reading/view',
+    name: 'reading-view-list',
+    component: ReadingViewList,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/reading/create',
+    name: 'reading-create',
+    component: ReadingCreate,
     meta: {
       requiresAuth: true
     }

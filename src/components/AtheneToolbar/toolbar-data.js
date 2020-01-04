@@ -19,18 +19,24 @@ const devotionals = {
   ]
 }
 
-// const books = {
-//   mainTab: {
-//     name: 'books',
-//     route: 'books'
-//   },
-//   subTabs: [
-//     {
-//       name: 'View'
-//     }
-//   ]
-// }
+const reading = {
+  mainTab: {
+    name: 'reading',
+    route: '/reading/view'
+  },
+  subTabs: [
+    {
+      name: 'View',
+      route: '/reading/view'
+    },
+    {
+      name: 'Create',
+      route: '/reading/create'
+    }
+  ]
+}
 
 export const tabs = {
-  devotionals: devotionals
+  devotionals: devotionals,
+  reading: reading
 }

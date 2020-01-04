@@ -9,8 +9,13 @@
         <v-tabs
             align-with-title
             background-color="transparent"
+            v-model="activeTabRoute"
             >
-            <v-tab v-for="tab in tabs" :key="tab.mainTab.name" :to="tab.mainTab.route">
+            <v-tab v-for="tab in tabs"
+              :key="tab.mainTab.name"
+              :to="tab.mainTab.route"
+
+              >
               {{tab.mainTab.name}}
             </v-tab>
         </v-tabs>
@@ -24,7 +29,7 @@
             align-with-title
             background-color="transparent"
             >
-            <v-tab v-for="subTab in tabs[selectedTab].subTabs"
+            <v-tab v-for="subTab in tabs[getActiveTab(activeTabRoute)].subTabs"
               :key="subTab.name"
               :to="subTab.route"
               >
@@ -46,10 +51,12 @@ export default {
     // Home
   },
 
-  data: () => ({
-    tabs: tabs,
-    selectedTab: 'devotionals'
-  }),
+  data: function () {
+    return {
+      tabs: tabs,
+      activeTabRoute: '/devotionals/view'
+    }
+  },
   methods: {
     ...mapActions([
       'signOut'
@@ -58,6 +65,9 @@ export default {
       this.signOut().then(() => {
         this.$router.push('/')
       })
+    },
+    getActiveTab (activeTabRoute) {
+      return activeTabRoute.split('/')[1]
     }
   }
 }

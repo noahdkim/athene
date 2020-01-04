@@ -42,6 +42,7 @@ const actions = {
     var newDevotionalsMetaRef = devotionalsMetaRef.doc()
     meta.contentId = newDevotionalsEntryRef.id
     meta.lastEdited = firebase.firestore.Timestamp.fromDate(new Date())
+    meta.created = meta.lastEdited
     batch.set(newDevotionalsEntryRef, entry)
     batch.set(newDevotionalsMetaRef, meta)
     return new Promise((resolve, reject) => {
@@ -107,6 +108,7 @@ const actions = {
         .get()
         .then((doc) => {
           const overallStatistics = doc.data()
+          console.log(overallStatistics)
           commit('updateOverallStatistics', overallStatistics)
           resolve()
         })
