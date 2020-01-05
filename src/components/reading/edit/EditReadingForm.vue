@@ -199,48 +199,36 @@ export default {
 
   methods: {
     ...mapActions([
-      'createDevotionalEntryInFirebase',
-      'updateDevotionalEntryInFirebase',
+      'createReadingEntryInFirebase',
+      'updateReadingEntryInFirebase',
       'getDevotionalEntry'
     ]),
-    saveDevotionalEntry () {
-      const parsedChapterAndVerses = this.parseChapterAndVerses()
-      const { chapter, startVerse, endVerse } = parsedChapterAndVerses
+    saveReadingEntry () {
       const entry = {
-        book: this.book,
-        chapter: chapter,
-        date: this.date,
-        startVerse: startVerse,
-        endVerse: endVerse,
-        summary: this.summary,
-        reflection: this.reflection
+        genre: this.genre,
+        author: this.author,
+        startDate: this.startDate,
+        completionDate: this.completionDate,
+        rating: this.rating,
+        synopsis: this.synopsis,
+        notes: this.notes
       }
       const meta = {
-        book: this.book,
-        chapter: chapter,
-        date: this.date,
-        startVerse: startVerse,
-        endVerse: endVerse
+        genre: this.genre,
+        author: this.author,
+        startDate: this.startDate,
+        completionDate: this.completionDate,
+        rating: this.rating
       }
-      return this.createDevotionalEntryInFirebase({ entry, meta })
+      return this.createReadingEntryInFirebase({ entry, meta })
     },
     validate () {
       if (this.$refs.form.validate()) {
-        this.saveDevotionalEntry().then(
-          this.$router.push('/devotionals/view')
+        this.saveReadingEntry().then(
+          this.$router.push('/reading/view')
         )
       }
-    },
-    parseChapterAndVerses () {
-      const splitChapterAndVerses = this.chapterAndVerses.split(':')
-      const chapter = parseInt(splitChapterAndVerses[0])
-      const verses = splitChapterAndVerses[1]
-      const splitVerses = verses.split('-')
-      const startVerse = parseInt(splitVerses[0])
-      const endVerse = parseInt(splitVerses[1])
-      return { chapter, startVerse, endVerse }
     }
-
   }
 }
 </script>

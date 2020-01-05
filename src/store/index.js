@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import actions from '@/store/actions'
+import devotionalActions from '@/store/devotionalActions'
+import readingActions from '@/store/readingActions'
 import mutations from '@/store/mutations'
 import getters from '@/store/getters'
 import createPersistedState from 'vuex-persistedstate'
@@ -14,7 +15,7 @@ export default new Vuex.Store({
     devotionalsMetas: []
   },
   mutations: mutations,
-  actions: actions,
+  actions: { ...devotionalActions, ...readingActions },
   getters: getters,
   modules: {
   },

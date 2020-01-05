@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 import { db } from '@/main.js'
 
-const actions = {
+const devotionalActions = {
   googleSignIn ({ commit }) {
     // Using a popup.
     let provider = new firebase.auth.GoogleAuthProvider()
@@ -48,7 +48,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       batch.commit()
         .then(function () {
-          resolve()
+          resolve(newDevotionalsEntryRef.id)
         })
         .catch(function (error) {
           reject(error)
@@ -83,6 +83,8 @@ const actions = {
     let devotionalsMetas = []
     return new Promise((resolve, reject) => {
       db.collection('meta').doc(userUID).collection('devotionals_meta')
+        .orderBy('lastEdited', 'desc')
+        .limit(100)
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
@@ -108,7 +110,6 @@ const actions = {
         .get()
         .then((doc) => {
           const overallStatistics = doc.data()
-          console.log(overallStatistics)
           commit('updateOverallStatistics', overallStatistics)
           resolve()
         })
@@ -121,4 +122,4 @@ const actions = {
 
 }
 
-export default actions
+export default devotionalActions

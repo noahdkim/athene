@@ -187,8 +187,9 @@ export default {
     },
     validate () {
       if (this.$refs.form.validate()) {
-        this.saveDevotionalEntry().then(
-          this.$router.push('/devotionals/view')
+        this.saveDevotionalEntry().then((contentId) => {
+          this.$router.push(`/devotionals/view/${contentId}`)
+        }
         )
       }
     },
