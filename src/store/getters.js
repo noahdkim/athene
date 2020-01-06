@@ -7,6 +7,9 @@ const getters = {
   },
   overallStatistics (state) {
     return state.overallStatistics
+  },
+  readingMetas (state) {
+    return state.readingMetas
   }
 }
 

@@ -17,10 +17,15 @@ const mutations = {
     state.userUID = null
   },
   updateDevotionalsMetas (state, newDevotionalsMetas) {
+    console.log(newDevotionalsMetas)
     state.devotionalsMetas = newDevotionalsMetas
   },
   updateOverallStatistics (state, newOverallStatistics) {
     state.overallStatistics = newOverallStatistics
+  },
+  updateReadingMetas (state, newReadingMetas) {
+    console.log(newReadingMetas)
+    state.readingMetas = newReadingMetas
   }
 }
 

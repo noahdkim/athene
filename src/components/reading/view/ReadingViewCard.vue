@@ -2,8 +2,8 @@
     <v-card
       :to="`/devotionals/view/${contentId}`"
     >
-      <v-card-title>{{book}} {{chapter}}:{{startVerse}}-{{endVerse}}</v-card-title>
-      <v-card-subtitle>{{dateCreated | moment}}</v-card-subtitle>
+      <v-card-title>{{title}}</v-card-title>
+      <v-card-subtitle>{{completionDate | moment}}</v-card-subtitle>
   </v-card>
 </template>
 
@@ -16,25 +16,25 @@ export default {
       type: String,
       default: ''
     },
-    chapter: {
-      type: Number,
-      default: 0
-    },
     contentId: {
       type: String,
       default: ''
     },
-    dateCreated: {
+    title: {
+      type: String,
+      default: ''
+    },
+    genre: {
+      type: String,
+      default: ''
+    },
+    rating: {
+      type: Number,
+      default: 0
+    },
+    completionDate: {
       type: Date,
       default: null
-    },
-    startVerse: {
-      type: Number,
-      default: 0
-    },
-    endVerse: {
-      type: Number,
-      default: 0
     }
   },
   filters: {

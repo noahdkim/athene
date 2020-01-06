@@ -34,23 +34,25 @@
           >
           </v-text-field>
         </v-col>
-        <v-col
+         <v-col
           cols="3"
         >
           <v-text-field
-            label="Genre"
-            v-model="genre"
+            label="Word Count"
+            v-model="wordCount"
             required
           >
           </v-text-field>
         </v-col>
-        <v-col
-          cols="3"
+         <v-col
+          cols="4"
         >
-          <v-select
-            :items="['Work', 'Pleasure']"
-            label="Work or Pleasure"
-          ></v-select>
+          <v-autocomplete
+            label="Genre"
+            :items="genres"
+            v-model="genre"
+            required
+          ></v-autocomplete>
         </v-col>
         <v-col
           cols="5"
@@ -132,6 +134,7 @@
 <script>
 import { mapActions } from 'vuex'
 import moment from 'moment'
+import { genresList } from '@/components/reading/edit/genres.js'
 
 export default {
   name: 'edit-reading-form',
@@ -171,6 +174,10 @@ export default {
     contentId: {
       type: String,
       default: ''
+    },
+    initialWordCount: {
+      type: Number,
+      default: 0
     }
   },
 
@@ -184,6 +191,8 @@ export default {
       completionDate: this.initialCompletionDate,
       synopsis: this.initialSynopsis,
       notes: this.initialNotes,
+      wordCount: this.initialWordCount,
+      genres: genresList,
       menu: false,
       valid: true
     }
@@ -205,20 +214,24 @@ export default {
     ]),
     saveReadingEntry () {
       const entry = {
+        title: this.title,
         genre: this.genre,
         author: this.author,
         startDate: this.startDate,
         completionDate: this.completionDate,
         rating: this.rating,
         synopsis: this.synopsis,
-        notes: this.notes
+        notes: this.notes,
+        wordCount: this.wordCount
       }
       const meta = {
+        title: this.title,
         genre: this.genre,
         author: this.author,
         startDate: this.startDate,
         completionDate: this.completionDate,
-        rating: this.rating
+        rating: this.rating,
+        wordCount: this.wordCount
       }
       return this.createReadingEntryInFirebase({ entry, meta })
     },

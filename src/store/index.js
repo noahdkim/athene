@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import actions from '@/store/actions'
 import devotionalActions from '@/store/devotionalActions'
 import readingActions from '@/store/readingActions'
 import mutations from '@/store/mutations'
@@ -15,7 +16,7 @@ export default new Vuex.Store({
     devotionalsMetas: []
   },
   mutations: mutations,
-  actions: { ...devotionalActions, ...readingActions },
+  actions: { ...actions, ...devotionalActions, ...readingActions },
   getters: getters,
   modules: {
   },

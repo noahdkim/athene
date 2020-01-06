@@ -11,17 +11,17 @@
     </v-row>
     <v-row justify="center">
       <v-col
-        v-for="meta in devotionalsMetas"
+        v-for="meta in readingMetas"
         :key="meta.content_id"
         cols=8
       >
-        <devotionals-view-card
-          :book="meta.book"
-          :chapter="meta.chapter"
-          :contentId="meta.contentId"
-          :dateCreated="meta.lastEdited.toDate()"
-          :startVerse="meta.startVerse"
-          :endVerse="meta.endVerse"
+        <reading-view-card
+          :title="meta.title"
+          :author="meta.author"
+          :genre="meta.genre"
+          :rating="meta.rating"
+          :wordCount="meta.wordCount"
+          :contentId="meta.content_id"
           />
       </v-col>
     </v-row>
@@ -38,39 +38,32 @@
 
 <script>
 import store from '@/store'
-import DevotionalsViewCard from '@/components/devotionals/view/DevotionalsViewCard.vue'
+import ReadingViewCard from '@/components/reading/view/ReadingViewCard.vue'
 
 export default {
-  name: 'devotionals',
+  name: 'readings',
   components: {
-    DevotionalsViewCard
+    ReadingViewCard
   },
 
   beforeRouteEnter (to, from, next) {
-    store.dispatch('getUserDevotionalsMetas').then(res => {
+    store.dispatch('getUserReadingMetas').then(res => {
       next()
     })
   },
   beforeRouteUpdate (to, from, next) {
-    store.dispatch('getUserDevotionalsMetas').then(res => {
+    store.dispatch('getUserReadingMetas').then(res => {
       next()
     })
   },
 
   data: function () {
     return {
-      devotionalsMetas: this.$store.getters.devotionalsMetas
+      readingMetas: this.$store.getters.readingMetas
     }
   },
 
   methods: {
-    setInitialData (err, devotionalsMetas) {
-      if (err) {
-        this.error = err.toString()
-      } else {
-        this.devotionalsMetas = devotionalsMetas
-      }
-    }
   }
 }
 </script>
