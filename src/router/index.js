@@ -8,6 +8,8 @@ import DevotionalsViewContent from '@/views/devotionals/view/DevotionalsViewCont
 import DevotionalsViewList from '@/views/devotionals/view/DevotionalsViewList.vue'
 import ReadingViewList from '@/views/reading/view/ReadingViewList.vue'
 import ReadingCreate from '@/views/reading/create/ReadingCreate.vue'
+import ReadingViewContent from '@/views/reading/view/ReadingViewContent.vue'
+import ReadingEditContent from '@/views/reading/edit/ReadingEditContent.vue'
 
 import store from '@/store'
 
@@ -76,6 +78,22 @@ const routes = [
     path: '/reading/create',
     name: 'reading-create',
     component: ReadingCreate,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/reading/view/:contentId',
+    name: 'reading-view-content',
+    component: ReadingViewContent,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/reading/edit/:contentId',
+    name: 'reading-edit-content',
+    component: ReadingEditContent,
     meta: {
       requiresAuth: true
     }

@@ -1,6 +1,6 @@
 <template>
     <v-card
-      :to="`/devotionals/view/${contentId}`"
+      :to="`/reading/view/${contentId}`"
     >
       <v-card-title>{{title}}</v-card-title>
       <v-card-subtitle>{{completionDate | moment}}</v-card-subtitle>

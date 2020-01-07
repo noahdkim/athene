@@ -12,7 +12,7 @@
     <v-row justify="center">
       <v-col
         v-for="meta in readingMetas"
-        :key="meta.content_id"
+        :key="meta.contentId"
         cols=8
       >
         <reading-view-card
@@ -21,7 +21,7 @@
           :genre="meta.genre"
           :rating="meta.rating"
           :wordCount="meta.wordCount"
-          :contentId="meta.content_id"
+          :contentId="meta.contentId"
           />
       </v-col>
     </v-row>
