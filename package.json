@@ -12,7 +12,7 @@
     "core-js": "^3.4.3",
     "firebase": "^7.5.0",
     "js-cookie": "^2.2.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "typescript": "^3.7.4",
     "vue": "^2.6.10",
     "vue-apexcharts": "^1.5.1",
